@@ -1,0 +1,15 @@
+import pandas as pd
+
+def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
+    result=[]
+    for i in range (len(employee)):
+        salary=employee['salary'][i]
+        if salary not in result:
+            result.append(salary)
+
+    result.sort(reverse=True)
+
+    if N > len(result) or N <= 0:
+            return pd.DataFrame({f'getNthHighestSalary({N})': [None]})
+
+    return pd.DataFrame({f'getNthHighestSalary({N})': [result[N-1]]})
